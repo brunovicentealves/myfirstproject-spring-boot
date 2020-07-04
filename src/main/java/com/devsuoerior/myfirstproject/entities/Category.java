@@ -1,12 +1,25 @@
 package com.devsuoerior.myfirstproject.entities;
 
-import java.io.Serializable;
-import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.w3c.dom.stylesheets.LinkStyle;
 
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+@Entity
 public class Category implements Serializable {
  private static final long serialVersionUID=1L;
+
+ @Id
+ @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id ;
     private String name;
+
+    @JsonIgnore // serve para não serializar a lista de produtos ( não trazer loop de json )
+    @OneToMany(mappedBy = "category")
+    private List<Product> products =  new ArrayList<>();
 
     public Category() {
     }
@@ -32,6 +45,12 @@ public class Category implements Serializable {
     public void setName(String name) {
         this.name = name;
     }
+
+    public List<Product> getProducts() {
+        return products;
+    }
+
+
 
     @Override
     public boolean equals(Object o) {
