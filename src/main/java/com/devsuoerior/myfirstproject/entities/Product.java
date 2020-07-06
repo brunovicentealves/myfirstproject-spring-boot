@@ -1,6 +1,7 @@
 package com.devsuoerior.myfirstproject.entities;
 
 
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
@@ -8,11 +9,10 @@ import java.util.Objects;
 @Entity
 public class Product implements Serializable {
 
+    private static final long serialVersionUID =1l;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
-
-    private static final long serialVersionUID =1l;
     private Long id;
     private String name;
     private Double price;
